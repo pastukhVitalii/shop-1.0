@@ -5,6 +5,7 @@ import {ShoppingCart} from "@material-ui/icons";
 import './Header.css';
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import {NavLink} from "react-router-dom";
 
 export default function Header() {
     const useStyles = makeStyles({
@@ -28,12 +29,13 @@ export default function Header() {
                 color="primary"
                 className={classes.root}
             >
-
                 <Grid
                     container
                     direction="row"
-                    justify="flex-end"
-                ><BottomNavigationAction label="Shop" icon={<ShoppingCart />}/>
+                    justify="space-between"
+                >
+                    <NavLink to={'/'}><BottomNavigationAction label="Main page" icon='Main page' style={{height: '100%'}}/></NavLink>
+                    <NavLink to={'/shoppingCart'}><BottomNavigationAction label="ShoppingCart" icon={<ShoppingCart />}/></NavLink>
                 </Grid>
             </BottomNavigation>
         </div>
