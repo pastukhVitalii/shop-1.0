@@ -8,7 +8,7 @@ function ShoppingCart() {
     return (
         <Grid container spacing={4} >
             <Grid item xs={8}>
-                <ShoppingBlank product={{id: '2', title: 'Asus', price: 799}}/>
+                <ShoppingBlank product={{id: '2', title: 'Asus', price: 799, count: 0}}/>
             </Grid>
             <Grid item xs={4}>
                 <div style={{backgroundColor: 'red', width: '100%'}}>f</div>

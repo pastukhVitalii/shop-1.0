@@ -1,10 +1,12 @@
-export type ProductType = {
-    id: string,
-    title: string,
-    price: number
-}
+import {setTimeout} from "timers";
 
-export const api: Array<ProductType> = [
-    {id: '1', title: 'Apple', price: 999},
-    {id: '2', title: 'Asus', price: 799}
-]
+export const api = {
+    addProductApi(){
+        return new Promise((resolve =>
+            setTimeout(() => {
+                resolve(['count'])
+            }, 200)
+
+        ))
+    }
+}

@@ -10,7 +10,7 @@ export default {
 
 export const CardAdd = (props: PropsType) => {
   return (
-      <MyCard product={{id: '1', title: 'Apple', price: 99}}
+      <MyCard product={{id: '1', title: 'Apple', price: 99, count: 0}}
               onAddItem={action('add item')}
               onDeleteItem={action('delete item')}/>
   )

@@ -12,7 +12,8 @@ import {
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Add, Remove} from "@material-ui/icons";
-import {ProductType} from "../../api/apiCard";
+import { ProductType, addProductAC } from '../../app/productsReducer';
+import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,9 +39,11 @@ export type CardType = {
 export function MyCard(props: PropsType & CardType) {
 
     const classes = useStyles();
+    const dispatch = useDispatch()
 
     let onAddItem = () => {
-        // alert('add')
+        debugger;
+        dispatch(addProductAC);
     }
     const onDeleteItem = () => {
         // alert('delete')
