@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Add, Remove} from "@material-ui/icons";
-import { ProductType, addProductAC } from '../../app/productsReducer';
+import {addproductsTC, ProductType} from '../../app/productsReducer';
 import {useDispatch} from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type PropsType = {
-    product: ProductType
+    products: ProductType
 }
 
 export type CardType = {
@@ -42,8 +42,7 @@ export function MyCard(props: PropsType & CardType) {
     const dispatch = useDispatch()
 
     let onAddItem = () => {
-        debugger;
-        dispatch(addProductAC);
+        dispatch(addproductsTC());
     }
     const onDeleteItem = () => {
         // alert('delete')
@@ -52,13 +51,13 @@ export function MyCard(props: PropsType & CardType) {
     return (
         <Card className={classes.root}>
             <CardHeader
-                title={props.product.title}
+                title={props.products.title}
                 // subheader="September 14, 2016"
             />
             <CardMedia
                 className={classes.media}
                 image="/static/images/cards/paella.jpg"
-                title={props.product.title}
+                title={props.products.title}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -73,7 +72,7 @@ export function MyCard(props: PropsType & CardType) {
                 <IconButton onClick={onDeleteItem}>
                     <Remove/>
                 </IconButton>
-                <span style={{marginLeft: '150px'}}>{props.product.price} $</span>
+                <span style={{marginLeft: '150px'}}>{props.products.price} $</span>
             </CardActions>
         </Card>
     );

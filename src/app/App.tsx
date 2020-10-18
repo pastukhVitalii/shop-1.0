@@ -11,8 +11,8 @@ function App() {
         <div className="App">
             <Header/>
             <Container fixed>
-                <Route exact path={'/'} render={() => <Shop/> }/>
-                <Route exact path={'/shoppingCart'} render={() => <ShoppingCart/> }/>
+                <Route exact path={'/'} render={() => <Shop/>}/>
+                <Route exact path={'/shoppingCart'} render={() => <ShoppingCart/>}/>
             </Container>
         </div>
     );

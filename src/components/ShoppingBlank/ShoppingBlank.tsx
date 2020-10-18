@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type PropsType = {
-    product: ProductType
+    products: ProductType
 }
 
 export type CardType = {
@@ -58,12 +58,12 @@ export function ShoppingBlank(props: PropsType & CardType) {
                     <CardMedia
                         className={classes.media}
                         image="/static/images/cards/paella.jpg"
-                        title={props.product.title}
+                        title={props.products.title}
                     />
                 </Grid>
                 <Grid item xs={5}>
                     <CardHeader
-                        title={props.product.title}
+                        title={props.products.title}
                     />
                     <CardContent>
                         <Typography variant="body2" color="textSecondary" component="p">
@@ -71,7 +71,7 @@ export function ShoppingBlank(props: PropsType & CardType) {
                             guests. Add 1 cup of frozen peas along with the mussels, if you like.
                         </Typography>
                         <Typography style={{padding: '10px 0 0 10px'}}>
-                            price: {props.product.price} $
+                            price: {props.products.price} $
                         </Typography>
                     </CardContent>
                 </Grid>

@@ -10,13 +10,16 @@ const initialState: initialStateType = {
 }
 
 export const slice = createSlice({
-name: 'cart',
+    name: 'cart',
     initialState: initialState,
     reducers: {
-        addProduct(state, action: PayloadAction<any>) {
+        addProductAC(state, action: PayloadAction<any>) {
             return state
-}
+        }
     }
 })
 
 export const cartReducer = slice.reducer;
+
+// export const {addProductAC} = slice.actions;
+
