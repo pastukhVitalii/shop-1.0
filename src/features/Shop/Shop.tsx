@@ -19,7 +19,7 @@ function Shop() {
         <Grid container spacing={1} justify='center'>
             {products.map(p => {
                 return <Paper style={{backgroundColor: 'blue', margin: '30px', width: '300px', height: '400px'}}>
-                    <MyCard products={p}/>
+                    <MyCard products={p} count={p.count}/>
                 </Paper>
             })}
         </Grid>

@@ -21,7 +21,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.database();
-export const name = db.ref();
+export const ref = db.ref();
 ReactDOM.render(
     <Provider store={store}><BrowserRouter>
         <React.StrictMode>

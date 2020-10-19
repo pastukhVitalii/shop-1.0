@@ -9,10 +9,10 @@ export default {
   component: MyCard
 };
 
-export const CardAdd = (props: PropsType) => {
+/*export const CardAdd = (props: PropsType) => {
   return (
       <MyCard products={{id: '1', title: 'Apple', price: 99, count: 0}}
               onAddItem={action('add item')}
               onDeleteItem={action('delete item')}/>
   )
-};
+};*/

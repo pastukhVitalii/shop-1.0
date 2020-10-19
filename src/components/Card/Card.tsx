@@ -28,22 +28,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type PropsType = {
-    products: ProductType
+    count: number,
+    products: ProductType,
 }
 
 export type CardType = {
-    onAddItem?: () => void,
+    onAddItem?: (products: ProductType) => void,
     onDeleteItem?: () => void,
 }
 
 export function MyCard(props: PropsType & CardType) {
 
     const classes = useStyles();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    let onAddItem = () => {
-        dispatch(addproductsTC());
+    const products = props.products;
+    let onAddItem = (products: ProductType) => {
+        dispatch(addproductsTC(products));
     }
+
     const onDeleteItem = () => {
         // alert('delete')
     }
@@ -54,6 +57,7 @@ export function MyCard(props: PropsType & CardType) {
                 title={props.products.title}
                 // subheader="September 14, 2016"
             />
+            {props.products.count}
             <CardMedia
                 className={classes.media}
                 image="/static/images/cards/paella.jpg"
@@ -66,7 +70,7 @@ export function MyCard(props: PropsType & CardType) {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton onClick={onAddItem}>
+                <IconButton onClick={() => onAddItem(products)}>
                     <Add/>
                 </IconButton>
                 <IconButton onClick={onDeleteItem}>
