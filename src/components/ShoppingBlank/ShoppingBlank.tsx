@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export type PropsType = {
     products: ProductType,
+    addProducts: (products: ProductType) => void
 }
 
 export type CardType = {
@@ -37,12 +38,12 @@ export type CardType = {
     onDeleteItem?: () => void,
 }
 
-export function ShoppingBlank(props: PropsType & CardType) {
+export const ShoppingBlank = React.memo(function (props: PropsType & CardType) {
 
     const classes = useStyles();
 
     const onAddItem = () => {
-        // setCount(count + 1);
+        props.addProducts(props.products)
     }
 
     const onDeleteItem = () => {
@@ -83,7 +84,8 @@ export function ShoppingBlank(props: PropsType & CardType) {
                                 {props.products.count}
                             </div>
                             <IconButton onClick={onAddItem} disabled={props.products.count >= 10}>
-                                <Add/> {props.products.count === 10?<div style={{color: 'tomato', fontSize: '14px'}}>Max count !!</div>: ''}
+                                <Add/> {props.products.count === 10 ?
+                                <div style={{color: 'tomato', fontSize: '14px'}}>Max count !!</div> : ''}
                             </IconButton>
                         </CardActions>
                     </Grid>
@@ -91,4 +93,4 @@ export function ShoppingBlank(props: PropsType & CardType) {
             </Grid>
         </Card>
     );
-}
+})

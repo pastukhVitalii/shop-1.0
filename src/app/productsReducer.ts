@@ -38,7 +38,7 @@ export const getProductsTC = () => {
     }
 };
 
-export const addproductsTC = (products: ProductType) => {
+export const addProductsTC = (products: ProductType) => {
     // get one product from props !!
     return (dispatch: Dispatch<any>) => {
         const db = firebase.database();

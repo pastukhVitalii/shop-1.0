@@ -5,12 +5,14 @@ import {ShoppingBlank} from "../../components/ShoppingBlank/ShoppingBlank";
 import {ProductType} from "../../app/productsReducer";
 
 type PropsType = {
-    products: Array<ProductType>
+    products: Array<ProductType>,
+    addProducts: (products: ProductType) => void
 }
 
-function ShoppingCart(props: PropsType) {
+export const ShoppingCart = React.memo(function (props: PropsType) {
 
-    let products = props.products.map(p =>  <ShoppingBlank products={p}/>)
+    let products = props.products.map(p =>  <ShoppingBlank products={p}
+                                                           addProducts={props.addProducts} />)
     return (
         <Grid container spacing={4} >
             <Grid item xs={8}>
@@ -21,6 +23,4 @@ function ShoppingCart(props: PropsType) {
             </Grid>
         </Grid>
     );
-}
-
-export default ShoppingCart;
+})
