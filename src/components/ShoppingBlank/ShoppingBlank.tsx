@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Card,
     CardActions,
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export type PropsType = {
-    products: ProductType
+    products: ProductType,
 }
 
 export type CardType = {
@@ -41,14 +41,12 @@ export function ShoppingBlank(props: PropsType & CardType) {
 
     const classes = useStyles();
 
-    const [count, setCount] = useState(1);
-
     const onAddItem = () => {
-        setCount(count + 1);
+        // setCount(count + 1);
     }
 
     const onDeleteItem = () => {
-        setCount(count - 1);
+        // setCount(count - 1);
     }
 
     return (
@@ -78,14 +76,14 @@ export function ShoppingBlank(props: PropsType & CardType) {
                 <Grid container item xs={4}>
                     <Grid container justify={'center'}>
                         <CardActions>
-                            <IconButton onClick={onDeleteItem} disabled={!count}>
+                            <IconButton onClick={onDeleteItem} disabled={!props.products.count}>
                                 <Remove/>
                             </IconButton>
                             <div>
-                                {count}
+                                {props.products.count}
                             </div>
-                            <IconButton onClick={onAddItem} disabled={count >= 10}>
-                                <Add/> {count === 10?<div style={{color: 'tomato', fontSize: '14px'}}>Max count !!</div>: ''}
+                            <IconButton onClick={onAddItem} disabled={props.products.count >= 10}>
+                                <Add/> {props.products.count === 10?<div style={{color: 'tomato', fontSize: '14px'}}>Max count !!</div>: ''}
                             </IconButton>
                         </CardActions>
                     </Grid>

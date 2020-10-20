@@ -1,5 +1,10 @@
 // export const aaa = 1;
 
+// export const aaa = 1;
+
+export const aaa = 1;
+
+/*
 import React from 'react';
 import {MyCard, PropsType} from "./Card";
 import {action} from "@storybook/addon-actions";
