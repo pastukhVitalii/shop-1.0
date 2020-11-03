@@ -10,11 +10,13 @@ type PropsType = {
 }
 
 export const Shop = React.memo(function (props: PropsType) {
+    console.log('render Shop')
 
     return (
         <Grid container spacing={1} justify='center'>
             {props.products.map(p => {
-                return <Paper style={{backgroundColor: 'blue', margin: '30px', width: '300px', height: '400px'}}>
+                return <Paper key={p.id}
+                              style={{backgroundColor: 'blue', margin: '30px', width: '300px', height: '400px'}}>
                     <MyCard products={p} addProducts={props.addProducts}/>
                 </Paper>
             })}

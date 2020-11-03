@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export type PropsType = {
     products: ProductType,
     addProducts: (products: ProductType) => void
+    deleteProducts: (products: ProductType) => void
 }
 
 export type CardType = {
@@ -39,7 +40,7 @@ export type CardType = {
 }
 
 export const ShoppingBlank = React.memo(function (props: PropsType & CardType) {
-
+    console.log('render Shopping blank')
     const classes = useStyles();
 
     const onAddItem = () => {
@@ -47,7 +48,7 @@ export const ShoppingBlank = React.memo(function (props: PropsType & CardType) {
     }
 
     const onDeleteItem = () => {
-        // setCount(count - 1);
+        props.deleteProducts(props.products)
     }
 
     return (
@@ -93,4 +94,5 @@ export const ShoppingBlank = React.memo(function (props: PropsType & CardType) {
             </Grid>
         </Card>
     );
-})
+});
+

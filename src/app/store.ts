@@ -2,11 +2,13 @@ import {combineReducers} from "redux";
 import {cartReducer} from "./cartReducer";
 import {productsReducer} from "./productsReducer";
 import {configureStore} from "@reduxjs/toolkit";
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 const rootReducer = combineReducers({
     products: productsReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    form: formReducer
 })
 
 export type RootReducerType = typeof rootReducer

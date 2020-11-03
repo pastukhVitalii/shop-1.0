@@ -19,7 +19,10 @@ export const slice = createSlice({
     initialState: initialState,
     reducers: {
         addProductAC(state, action: PayloadAction<{ products: Array<ProductType> }>) {
-            return action.payload.products;
+            return action.payload.products
+        },
+        deleteProductAC(state, action: PayloadAction<{ products: Array<ProductType> }>) {
+            return action.payload.products
         },
         getProductsAC(state, action: PayloadAction<{ products: Array<ProductType> }>) {
             return action.payload.products.map(tl => ({...tl}));
@@ -27,7 +30,7 @@ export const slice = createSlice({
     }
 });
 
-export const {addProductAC, getProductsAC} = slice.actions;
+export const {addProductAC, deleteProductAC, getProductsAC} = slice.actions;
 export const productsReducer = slice.reducer;
 
 export const getProductsTC = () => {
@@ -53,6 +56,24 @@ export const addProductsTC = (products: ProductType) => {
         ref.on('value', (snapshot) => {
             // dispatch all products !!
             dispatch(addProductAC(snapshot.val()))
+        })
+    }
+};
+export const deleteProductsTC = (products: ProductType) => {
+    // get one product from props !!
+    return (dispatch: Dispatch<any>) => {
+        const db = firebase.database();
+        const productId = products.id; // get id product
+        // path to count
+        const productItem = db.ref(`products/${productId}/count`);
+        // write new count and read count
+        productItem.transaction(function (currentCount) {
+            return currentCount - 1
+        })
+        // read all products
+        ref.on('value', (snapshot) => {
+            // dispatch all products !!
+            dispatch(deleteProductAC(snapshot.val()))
         })
     }
 };

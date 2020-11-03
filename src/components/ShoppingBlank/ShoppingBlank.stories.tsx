@@ -11,6 +11,7 @@ export const ShoppingBlanks  = (props: PropsType) => {
     return (
         <ShoppingBlank products={{id: '1', title: 'Apple', price: 99, count: 0}}
                        addProducts={action('add item callback')}
+                       deleteProducts={action('add delete callback')}
                        onAddItem={action('add item')}
                        onDeleteItem={action('delete item')}/>
     )

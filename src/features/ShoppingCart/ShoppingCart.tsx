@@ -3,23 +3,28 @@ import './ShoppingCart.css';
 import {Grid} from "@material-ui/core";
 import {ShoppingBlank} from "../../components/ShoppingBlank/ShoppingBlank";
 import {ProductType} from "../../app/productsReducer";
+import {OrderForm} from "../../components/Form/Form";
 
 type PropsType = {
-    products: Array<ProductType>,
+    products: Array<ProductType>
     addProducts: (products: ProductType) => void
+    deleteProducts: (products: ProductType) => void
 }
 
 export const ShoppingCart = React.memo(function (props: PropsType) {
+    console.log('render Shopping Cart')
 
-    let products = props.products.map(p =>  <ShoppingBlank products={p}
-                                                           addProducts={props.addProducts} />)
+    const products = props.products.map(p => <ShoppingBlank key={p.id} products={p}
+                                                                          addProducts={props.addProducts}
+                                                                          deleteProducts={props.deleteProducts}/>)
+
     return (
-        <Grid container spacing={4} >
+        <Grid container spacing={4}>
             <Grid item xs={8}>
                 {products}
             </Grid>
             <Grid item xs={4}>
-                <div style={{backgroundColor: 'red', width: '100%'}}>f</div>
+                <OrderForm products={props.products}/>
             </Grid>
         </Grid>
     );
