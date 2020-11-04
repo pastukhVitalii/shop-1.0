@@ -13,10 +13,9 @@ type PropsType = {
 
 export const ShoppingCart = React.memo(function (props: PropsType) {
     console.log('render Shopping Cart')
-
     const products = props.products.map(p => <ShoppingBlank key={p.id} products={p}
-                                                                          addProducts={props.addProducts}
-                                                                          deleteProducts={props.deleteProducts}/>)
+                                                            addProducts={props.addProducts}
+                                                            deleteProducts={props.deleteProducts}/>)
 
     return (
         <Grid container spacing={4}>
