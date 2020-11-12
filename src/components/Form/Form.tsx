@@ -42,7 +42,6 @@ const Form = React.memo(function (props: InjectedFormProps) {
                            validate={[required, email]}/>
                     <Field name="phoneNumber" component={renderTextField} label="Phone Number"
                            validate={[required, maxLength10, number]}/>
-                    <Field name={'4343'} />
                     <Button variant="contained" color="primary" type="submit"
                             style={{'margin': '20px ', 'width': 'calc(100% - 40px)'}}>
                         Send
@@ -67,6 +66,7 @@ type ValueType = {
 const ReduxForm = reduxForm<ValueType>({form: 'login'})(Form);
 
 export const OrderForm = function (props: PropsType) {
+
     const onSubmit = (values: ValueType) => {
         if (props.products.length === 0) {
             alert('Cart is empty!')
@@ -74,8 +74,14 @@ export const OrderForm = function (props: PropsType) {
             let customer = JSON.stringify(values, null, 2);
             let products = JSON.stringify(props.products);
             alert(`Order ${customer} ${products}`);
+            saveProducts(products);
         }
     }
+
+    const saveProducts = (products: string) => {
+        let stateAsString = JSON.stringify(products);
+        localStorage.setItem('products', stateAsString);
+    };
     return (
         <ReduxForm onSubmit={onSubmit}/>
     )
