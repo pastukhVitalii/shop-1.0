@@ -1,14 +1,17 @@
 import React from 'react';
 import {Button, Paper, TextField} from "@material-ui/core";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form";
 import {ProductType} from "../../app/productsReducer";
-import {maxLengthCreator, number, required} from "./validators";
+import {email, maxLengthCreator, number, required} from "./validators";
 
-/*type PropsTypeForm = {
-    handleSubmit: () => void
-}*/
+type FormControlPropsType = {
+    meta: WrappedFieldMetaProps
+    label: string
+    name: string
+    input: WrappedFieldProps
+}
 
-const renderTextField = ({label, input, meta: {touched, invalid, error}, ...custom}: any) => (
+const renderTextField: React.FC<FormControlPropsType> = ({label, input, meta: {touched, invalid, error}, ...custom}) => (
     <><TextField
         label={label}
         placeholder={label}
@@ -23,11 +26,10 @@ const renderTextField = ({label, input, meta: {touched, invalid, error}, ...cust
     </>
 )
 const maxLength10 = maxLengthCreator(10);
-const maxLength20 = maxLengthCreator(20);
 
-const Form = React.memo(function (props: any) {
+const Form = React.memo(function (props: InjectedFormProps) {
     console.log('render Form')
-    const {error, handleSubmit, pristine, reset, submitting, products} = props
+    const {handleSubmit} = props
     return (
         <form onSubmit={handleSubmit}>
             <div style={{width: '100%', marginTop: '30px',}}>
@@ -36,10 +38,11 @@ const Form = React.memo(function (props: any) {
                            validate={[required, maxLength10]}/>
                     <Field name="lastName" component={renderTextField} label="Last Name"
                            validate={[required, maxLength10]}/>
-                    <Field name="address" component={renderTextField} label="Address"
-                           validate={[required, maxLength20]}/>
+                    <Field name="email" component={renderTextField} label="Email"
+                           validate={[required, email]}/>
                     <Field name="phoneNumber" component={renderTextField} label="Phone Number"
                            validate={[required, maxLength10, number]}/>
+                    <Field name={'4343'} />
                     <Button variant="contained" color="primary" type="submit"
                             style={{'margin': '20px ', 'width': 'calc(100% - 40px)'}}>
                         Send
@@ -54,27 +57,24 @@ type PropsType = {
     products: Array<ProductType>
 }
 
-type FormDataType = {
-    address: string
+type ValueType = {
+    email: string
     firstName: string
     lastName: string
     phoneNumber: string
 }
 
-/*export default reduxForm({
-    form: 'submitValidation' // a unique identifier for this form
-})(Form)*/
-const ReduxForm =  reduxForm({form: 'login'})(Form);
+const ReduxForm = reduxForm<ValueType>({form: 'login'})(Form);
 
 export const OrderForm = function (props: PropsType) {
-    const onSubmit = (values: any) => {
+    const onSubmit = (values: ValueType) => {
         if (props.products.length === 0) {
             alert('Cart is empty!')
+        } else {
+            let customer = JSON.stringify(values, null, 2);
+            let products = JSON.stringify(props.products);
+            alert(`Order ${customer} ${products}`);
         }
-        // alert([values, props.products]);
-        let customer = JSON.stringify(values, null, 2);
-        let products = JSON.stringify(props.products, null, 2);
-        console.log(customer, products)
     }
     return (
         <ReduxForm onSubmit={onSubmit}/>
